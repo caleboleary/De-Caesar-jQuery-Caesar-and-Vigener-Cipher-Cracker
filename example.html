@@ -1,0 +1,117 @@
+<script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
+<script src="decaesar.js"></script>
+<script src="example.js"></script>
+<style>
+h1 {
+  font-family:sans-serif;
+  text-align:center;
+  margin-top:50px;
+}
+
+h2 {
+  font-family:sans-serif;
+  text-align:center;
+  margin-top:20px;
+  font-size:20px;
+}
+
+label {
+  text-align:center;
+  display:block;
+  margin:0 auto;
+  margin-top:20px;
+  max-width:50%;
+}
+
+.key, .len {
+  margin:0 auto;
+  text-align:center;
+  display:block;
+}
+
+textarea {
+  width:50%;
+  min-height:200px;
+  margin:0 auto;
+  display:block;
+}
+
+.decode {
+  text-align:center;
+  display:block;
+  width:200px;
+  margin:20px auto 0 auto;
+  padding:20px 0;
+  background-color:#444;
+  color:white;
+  border-radius:10px;
+}
+
+div {
+  max-width:50%;
+  margin:0 auto;
+  margin-top:50px;
+  font-size:16px;
+}
+
+.slide1, .slide2 {
+  max-width:100%;
+}
+
+.slide2, .len, .lenlabel {
+  display:none;
+}
+
+.desc {
+  max-width:75%;
+  margin:0 auto;
+  padding:20px;
+  background-color:#eee;
+  border:1px solid #ddd;
+}
+
+.moreResults {
+  display:none;
+}
+
+.addtl {
+  display:none;
+}
+
+.addtl:first-of-type {
+  display:block!important;
+}
+</style>
+<h2>Cipher Type:
+<select class="type">
+  <option value="caesar">Caesar</option>
+  <option value="vigenere">Vigenere</option>
+</select></h2>
+<h2>What do you want to do?
+<select class="function">
+  <option value="encode">Encode</option>
+  <option value="decode">Decode</option>
+  <option value="crack">Crack</option>
+</select></h2>
+<div class="slide1">
+  <h1>De-Caesar</h1>
+  <h2>JavaScript Ceasear Shift Decoder by <a href="http://caleboleary.com">Caleb O'Leary</a></h2>
+  <p class="desc">A Caesar cipher is a method of enciphering messages by shifting each letter x letters down in the alphabet. With a shift of 1, 'a' becomes 'b', 'caleb' becomes 'dbmfc', etc. This tool was originally developed to show all possible Caesar shifts of a given string (I needed to solve a puzzle, that's not cheating is it?). I expanded it to analyze the letter frequency of each result, and pick the most likely answer.</p>
+  <label>Message</label>
+  <textarea></textarea>
+  <label class="keylabel">Key (integer)</label><input class="key" type="text"></input>
+  <a class="decode" href="#">Submit</a>
+  <div></div>
+</div>
+<div class="slide2">
+  <h1>De-Vigenere</h1>
+  <h2>JavaScript Vigenere Cipher Decoder by <a href="http://caleboleary.com">Caleb O'Leary</a></h2>
+  <p class="desc">A Vigenere Cipher is a method of enciphering messages by using any amount of interwoven Caesar ciphers. Rather than encoding a message with a number, the message is encoded with a 'key string'. For a key string of 'caleb', the first letter of the message would be shifted 3 positions (since 'c' is the third letter of the alphabet), the second letter 1 space (for 'a') etc. The sixth letter would loop back to the front of the key, shifting by 3 spaces again for 'c'. The Vigenere Cipher was considered unbreakable for several centuries before being broken in the mid-1800's by Charles Babbage, who found that you could exploit the repetitive nature of the key, which would eventually produce repeats in the text. To crack a Vigenere ciphered message, this program looks for repetitions in the ciphertext, and counts the letters between them. This number and its factors are then considered potential key lengths. For a key length of 3, we would run a frequency analysis on every 3rd letter (the same function that cracks Caesar ciphers) and return the most likely shift for that group. The program then arranges its top 10 results by the number of real words it recognizes (from a list of the 1000 most commom English words). The cracking functions work best with a long message. </p>
+  <label>Message</label>
+  <textarea></textarea>
+  <label class="keylabel">Key (string, a-z and A-Z only please)</label><input class="key" type="text"></input>
+  <label class="lenlabel">If you know the key length, enter it below not counting spaces(for 'I am Caleb' you'd enter: 8), or leave it blank<br><br>Warning: If you leave it blank, it will attempt to guess the key length by analyzing the text, this will run thousands of calculations in your browswer, it could take 10-15 seconds for a few paragraphs, or much longer for long messages. This decoder works best with long messages and relatively short keys.<br><br>Key Length (integer)</label><input class="len" type="text" style="display:block"></input>
+  <a class="decode" href="#">Submit</a>
+  <div></div>
+</div>
+</div>

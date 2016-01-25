@@ -36,15 +36,10 @@ function keyLenVigenere(str,keyLen)
 //input keyLen - integer - length of key (no spaces or spec char) 
 //return - array - [best guess at the key based on freq analysis, index of coincidence]
 
-
-function crackVigenere(str) 
-//input str - string - to be cracked
-//return - array of integers - guesses at keylength arranged lowest to highest, to be used with @keyLenVigenere (loop through results of crackVigenere and perform keyLenVigenere on desired number of them)
-
 function wordMatchr(str)
 //input str - string - to look for words
 //return - integer - number of words matched in string
 
-function frequencyAnalyze(arr)
-//input arr - array of strings - to be analyzed
-//return - array of objects - cointaining guesses based on observed repetition lengths run through @keyLenVigenere and then added if index of coincidence is greater than 6
+function crackVigenere(str) 
+//input str - string - to be cracked
+//return - array of objects - cointaining guesses based on observed repetition lengths run through @keyLenVigenere and then added if index of coincidence is greater than 6 (avg english is ~6.7)

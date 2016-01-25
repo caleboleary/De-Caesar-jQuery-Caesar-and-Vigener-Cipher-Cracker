@@ -1,4 +1,4 @@
-# De-Caesar-jQuery-Caesar-and-Vigener-Cipher-Cracker
+# DeCaesar-DeVigenere-JavaScript-Cracker
 This uses JavaScript to encode, decode, and attempt to crack Caesar and Vigenere Ciphers. Just a fun personal project, I recently added Index of Coincidence detection to the vigenere cracking, making it much more efficient
 
 Function list:

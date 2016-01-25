@@ -1,4 +1,6 @@
 $(document).ready(function(){
+	// ------------------------------------- JQUERY STUFF TO RUN DEMO ------------------------------------- //
+
 	$('.type').change(function(){
 		$('.key').val('');
 		if ($(this).find('option:selected').val() == 'caesar') {
@@ -71,7 +73,7 @@ $(document).ready(function(){
 				$('.slide2 div').html(' ');
 				var toCrack = $('.slide2 textarea').val();
 				var passedKeyLen = parseInt($('.len').val());
-				var keyy = keyLenVigenere(toCrack,passedKeyLen);
+				var keyy = keyLenVigenere(toCrack,passedKeyLen)[0];
 				$('.slide2 div').append('My best guess:<br><hr>');
 				$('.slide2 div').append('<strong>Key:</strong> ' + keyy +' / ' + enCaesar(keyy,1));
 				$('.slide2 div').append('<br><strong>Message:</strong> ' + deVigenere(toCrack,keyy));
@@ -80,38 +82,22 @@ $(document).ready(function(){
 				$('.slide2 div').html(' ');
 				var toCrack = $('.slide2 textarea').val();
 				var crack = crackVigenere(toCrack);
-				var toDisplay = [];
-				var wrdMtch = [];
-				if (crack.length < 20) {
-					var repeats = crack.length;
+				
+				$('.slide2 div').append('My best guess is:');
+				$('.slide2 div').append('<p class="addtl"><strong>Key:</strong> ' + crack[0].key +' / ' + enCaesar(crack[0].key,1) + ' (a=1 / a=0)<br><strong>Index of Coincidence:</strong>' +crack[0].ic+'<br><strong>Top 1000 words found:</strong>'+crack[0].wordmatches+'<br><strong>Message:</strong> ' + crack[0].message + '<br><hr></p>');
+				$('.slide2 div').append('<hr><br><button class="seeMore">See more results</button><br>');
+				if ( crack.length < 10) {
+					var numToDisplay = crack.length;
 				}
 				else {
-					var repeats = 20;
+					var numToDisplay = 10;
 				}
-				for (var z = 0; z < repeats; z++) {
-					var keyy = keyLenVigenere(toCrack,crack[z]);
-					var thisMsg = deVigenere(toCrack,keyy);
-					toDisplay.push('<p class="addtl addtl'+z+'"><strong>Key:</strong> ' + keyy +' / ' + enCaesar(keyy,1) + ' (a=1 / a=0) <br><strong>Message:</strong> ' + thisMsg + '<br><hr></p>'); 
-					// $('.slide2 div').append('<strong>Key:</strong> ' + keyy +' / ' + enCaesar(keyy,1));
-					// $('.slide2 div').append('<br><strong>Message:</strong> ' + thisMsg);
-					// $('.slide2 div').append('<hr>');
-					wrdMtch.push(wordMatchr(thisMsg));
-					console.log('------ trying key '+z+'----------------');
-				}
-				$('.slide2 div').append('My best guess is:');
-				var mostMatches = wrdMtch.indexOf(Math.max.apply(Math, wrdMtch));
-				$('.slide2 div').append(toDisplay[mostMatches]);
-				wrdMtch[mostMatches] = 0;
-				$('.slide2 div').append('<hr><br><button class="seeMore">See more results</button><br>');
-				for (var p = 0; p < 10; p++) {
-					mostMatches = wrdMtch.indexOf(Math.max.apply(Math, wrdMtch));
-					$('.slide2 div').append(toDisplay[mostMatches]);
-					wrdMtch[mostMatches] = 0;			
+				for (var p = 1; p < numToDisplay; p++) {
+					$('.slide2 div').append('<p class="addtl"><strong>Key:</strong> ' + crack[p].key +' / ' + enCaesar(crack[p].key,1) + ' (a=1 / a=0)<br><strong>Index of Coincidence:</strong>' +crack[p].ic+'<br><strong>Top 1000 words found:</strong>'+crack[p].wordmatches+'<br><strong>Message:</strong> ' + crack[p].message + '<br><hr></p>');
 				}
 				$('.seeMore').click(function(e){
 					$('.seeMore').hide();
 					e.preventDefault();
-					console.log('test');
 					$('.addtl').slideDown();
 				});						
 			}

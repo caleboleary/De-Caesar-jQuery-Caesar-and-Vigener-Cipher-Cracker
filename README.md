@@ -1,5 +1,5 @@
 # De-Caesar-jQuery-Caesar-and-Vigener-Cipher-Cracker
-This uses JavaScript and jQuery to encode, decode, and attempt to crack Caesar and Vigenere Ciphers. Just a fun personal project, I have many ideas on how to improve the Vigenere cracker and how to incorporate additional ciphers to the program. 
+This uses JavaScript to encode, decode, and attempt to crack Caesar and Vigenere Ciphers. Just a fun personal project, I recently added Index of Coincidence detection to the vigenere cracking, making it much more efficient
 
 Function list:
 
@@ -8,47 +8,43 @@ function enCaesar(str,shift)
 //input shift - integer - to shift by
 //return - encoded string
 
-
 function deCaesar(str,shift)
 //input str - string - to be decoded
 //input shift - integer - to shift by
 //return - string - decoded string
 
-
 function crackCaesar(str) 
 //input str - string - to be cracked
-//return - string - of best guess based on freq analysis compared to english
-
+//return - integer - of best guess for shift (to run through deCaesar) based on English frequency analysis
 
 function enVigenere(str,key) {
 //input str - string - to be encoded
 //input shift - string - to shift by
 //return - string - encoded string
 
-
 function deVigenere(str,key)
 //input str - string - to be decoded
 //input shift - string - to shift by
 //return - string - decoded string
 
+function getIC(str)
+//input str - string - to be analyzed
+//return - float - index of coincidence for this string. (gibberish and vigenere enciphered code is about .04, english is about .067)
 
 function keyLenVigenere(str,keyLen)
 //input str - string - to be cracked
 //input keyLen - integer - length of key (no spaces or spec char) 
-//return - string - best guess at the key based on freq analysis
+//return - array - [best guess at the key based on freq analysis, index of coincidence]
 
 
 function crackVigenere(str) 
 //input str - string - to be cracked
 //return - array of integers - guesses at keylength arranged lowest to highest, to be used with @keyLenVigenere (loop through results of crackVigenere and perform keyLenVigenere on desired number of them)
 
-
-function frequencyAnalyze(arr)
-//input arr - array of strings - to be analyzed
-//return - array of floats - ordered the same as input array, lower numbers are closer to english
-
-
 function wordMatchr(str)
 //input str - string - to look for words
 //return - integer - number of words matched in string
 
+function frequencyAnalyze(arr)
+//input arr - array of strings - to be analyzed
+//return - array of objects - cointaining guesses based on observed repetition lengths run through @keyLenVigenere and then added if index of coincidence is greater than 6

@@ -116,7 +116,7 @@ function enVigenere(str,key) {
 	}
 	for (var i = 0, len = str.length; i < len; i++) {//for each letter in string
 		if (str[i].match(/^[a-zA-Z]*$/gi) === null  ) {
-			key = key.substr(0, i) + ' ' + key.substr(i);//if the letter in string isn't a-z or A-Z we insert a space at this spot in key, to preserve the key shit for the next real letter
+			key = key.substr(0, i) + ' ' + key.substr(i);//if the letter in string isn't a-z or A-Z we insert a space at this spot in key, to preserve the key shift for the next real letter
 		}
 		var shift = key[i].charCodeAt(0)-96;//get our shift amount, if it is a space it will be negative, and the for loop won't run on this turn and the character is unchanged
 		for (var j = 0; j < shift; j++) {//caesar shift the letter by shift amount
@@ -141,7 +141,7 @@ function deVigenere(str,key) {
 	}
 	for (var i = 0, len = str.length; i < len; i++) {//for each letter in string
 		if (str[i].match(/^[a-zA-Z]*$/gi) === null  ) {
-			key = key.substr(0, i) + ' ' + key.substr(i);//if the letter in string isn't a-z or A-Z we insert a space at this spot in key, to preserve the key shit for the next real letter
+			key = key.substr(0, i) + ' ' + key.substr(i);//if the letter in string isn't a-z or A-Z we insert a space at this spot in key, to preserve the key shift for the next real letter
 		}
 		var shift = key[i].charCodeAt(0)-96;//get our shift amount, if it is a space it will be negative, and the for loop won't run on this turn and the character is unchanged
 		for (var j = 0, len2 = shift; j < len2; j++) {//reverse caesar shift the letter by shift amount
